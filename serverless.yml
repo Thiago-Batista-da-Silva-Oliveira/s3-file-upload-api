@@ -1,19 +1,18 @@
-
-service:s3-file-uploader
+service: s3-file-uploader
 
 provider:
- name: aws
- runtime: nodejs12.x
- stage: dev
- region: us-west-1
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: us-west-1
 
- custom:
+custom:
   fileUploadBucketName: ${self:service}-bucket-${self:provider.stage}
 
-resources: 
-  Resources: 
-  FileBucket: 
-   Type: AWS::S3::Bucket
-    Properties:
-     BucketName: ${self:custom.fileUploadBucketName}
-     AccessControl: Private
+resources:
+  Resources:
+    FileBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.fileUploadBucketName}
+        AccessControl: Private
